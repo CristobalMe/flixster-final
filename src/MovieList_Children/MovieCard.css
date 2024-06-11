@@ -1,0 +1,20 @@
+.card{
+    background-color: #033E8C;
+    border-radius: 8px;
+    min-width: 200px;
+    min-height: 300px;
+    box-shadow: 0 14px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: auto;
+}
+
+.img{
+    size: 60px;
+}
+
+.card:hover{
+    background-color: #0367A6;
+    transform: scale(1.05);
+}
+
+
