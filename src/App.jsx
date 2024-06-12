@@ -6,6 +6,7 @@ import MovieList from './MovieList'
 const App = () => {
   const [query, setQuery] = useState('')
   const [filter, setFilter] = useState('')
+  const [isSearchOn, setSearchOn] = useState(false)
 
 
   /* Searching --------------------------------------------------------------- */
@@ -65,26 +66,30 @@ const App = () => {
 
       <div className='toggleSearch'>
         
-        <p>Search</p>
+        <p>Now Playing</p>
 
         <label class="switch">
-          <input type="checkbox" onChange={searchOnOff} id='searchBarOn' />
+          <input type="checkbox" onChange={() => {
+            if (isSearchOn){
+              setSearchOn(false)
+            } else{
+              setSearchOn(true)
+            }
+          }} id='searchBarOn' />
           <span class="slider round"></span>
         </label>
 
-        <p>Now Playing</p>
+        <p>Search</p>
       </div>
 
-      
-
-      
-      <TextField
+      {isSearchOn && <TextField
           id="outlined-basic"
           onChange={handleSearchChange}
           variant="outlined"
           fullWidth
           label="Search"
-        />
+        />}
+
 
       <MovieList query={query} filter={filter} />
 
