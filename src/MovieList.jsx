@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Modal from './Modal'
 
 
-const MovieList = ({ query, filter }) => {
+const MovieList = ({ query, filter, filterOrder }) => {
   const [movies, setMovies] = useState([])
   const [page, pageNumber] = useState(1)
   const [modalActive, setModalActive] = useState(false)
@@ -12,7 +12,7 @@ const MovieList = ({ query, filter }) => {
 
   useEffect(() => {
     fetchMovies();
-  }, [page, query, filter])
+  }, [page, query, filter, filterOrder])
 
   /* Fetching  -------------------------------------------------------------- */
 
@@ -31,6 +31,10 @@ const MovieList = ({ query, filter }) => {
     if (filter && query){
       // Fix url
       url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${filter}&query=${query} `;
+    }
+
+    if (filterOrder){
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=1&sort_by=${filterOrder}`
     }
 
     try {

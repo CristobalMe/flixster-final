@@ -7,6 +7,7 @@ const App = () => {
   const [query, setQuery] = useState('')
   const [filter, setFilter] = useState('')
   const [isSearchOn, setSearchOn] = useState(false)
+  const [filterOrder, setFilterOrder] = useState('')
 
 
   /* Searching --------------------------------------------------------------- */
@@ -19,19 +20,6 @@ const App = () => {
   }
 
 
-  /* searchOnOff hides the search bar when the slider is activated */
-  const searchOnOff = () => {
-    var x = document.getElementById('searchBarOn');
-    var y = document.getElementById('outlined-basic');
-    if (x.checked) {
-        y.style.display = "none";
-        setQuery("")
-        
-    } else {
-        y.style.display = "";
-    }
-  }
-
 
   /* End Searching ----------------------------------------------------------- */
   
@@ -39,6 +27,10 @@ const App = () => {
   /* Filtering  -------------------------------------------------------------- */
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter)
+  }
+
+  const handleFilterChangeOrder = (newfilterOrder) => {
+    setFilterOrder(newfilterOrder)
   }
     
 
@@ -59,6 +51,8 @@ const App = () => {
             <button class="Genre" onClick={() => handleFilterChange("16")}>Animation</button>
             <button class="Genre" onClick={() => handleFilterChange("35")}>Comedy</button>
             <button class="Genre" onClick={() => handleFilterChange("14")}>Fantasy</button>
+            <button class="Desending" onClick={() => handleFilterChangeOrder("title.desc")}>Title descending</button>
+            <button class="Desending" onClick={() => handleFilterChangeOrder("title.asc")}>Title ascending</button>
         </div>
       </div>
 
@@ -91,7 +85,7 @@ const App = () => {
         />}
 
 
-      <MovieList query={query} filter={filter} />
+      <MovieList query={query} filter={filter} filterOrder={filterOrder} />
 
 
       <footer>
