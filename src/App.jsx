@@ -25,10 +25,13 @@ const App = () => {
   
 
   /* Filtering  -------------------------------------------------------------- */
+
+  /* Sets the filter to the corresponding genre */ 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter)
   }
 
+  /* Sets the filter to the corresponding order */ 
   const handleFilterChangeOrder = (newfilterOrder) => {
     setFilterOrder(newfilterOrder)
   }
@@ -53,6 +56,8 @@ const App = () => {
             <button class="Genre" onClick={() => handleFilterChange("14")}>Fantasy</button>
             <button class="Desending" onClick={() => handleFilterChangeOrder("title.desc")}>Title descending</button>
             <button class="Desending" onClick={() => handleFilterChangeOrder("title.asc")}>Title ascending</button>
+            <button class="Desending" onClick={() => handleFilterChangeOrder("vote_average.des")}>Votes descending</button>
+            <button class="Desending" onClick={() => handleFilterChangeOrder("vote_average.asc")}>Votes ascending</button>
         </div>
       </div>
 
