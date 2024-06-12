@@ -5,7 +5,7 @@ import MovieList from './MovieList'
 
 const App = () => {
   const [query, setQuery] = useState('')
-  const [filter, setFilter] = useState('popularity.desc')
+  const [filter, setFilter] = useState('')
 
 
   /* Searching --------------------------------------------------------------- */
@@ -36,6 +36,10 @@ const App = () => {
   
 
   /* Filtering  -------------------------------------------------------------- */
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter)
+  }
+    
 
 
   /* ------------------------------------------------------------------------- */
@@ -45,6 +49,18 @@ const App = () => {
       <header className='App-header'>
         <h2>Flixster</h2>
       </header>
+
+      <div class="dropdown">
+        <button class="dropbtn">Filter</button>
+        <div class="dropdown-content">
+            <button class="Genre" onClick={() => handleFilterChange("")}>None</button>
+            <button class="Genre" onClick={() => handleFilterChange("28")}>Action</button>
+            <button class="Genre" onClick={() => handleFilterChange("16")}>Animation</button>
+            <button class="Genre" onClick={() => handleFilterChange("35")}>Comedy</button>
+            <button class="Genre" onClick={() => handleFilterChange("14")}>Fantasy</button>
+        </div>
+      </div>
+
 
 
       <div className='toggleSearch'>
@@ -71,6 +87,13 @@ const App = () => {
         />
 
       <MovieList query={query} filter={filter} />
+
+
+      <footer>
+        <p>Author: Cristobal Medina Meza</p>
+        <p>About: Meta U week 2 project</p>
+        <p><a href="cristobalmedina2004@gmail.com">cristobalmedina2004@gmail.com</a></p>
+      </footer>
     </div>
 
     

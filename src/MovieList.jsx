@@ -1,11 +1,14 @@
 import './MovieList.css'
 import MovieCard from './MovieList_Children/MovieCard'
 import { useEffect, useState } from 'react'
+import Modal from './Modal'
 
 
 const MovieList = ({ query, filter }) => {
   const [movies, setMovies] = useState([])
   const [page, pageNumber] = useState(1)
+  const [modalActive, setModalActive] = useState(false)
+  const [selectedMovie, setSelectedMovie] = useState(null)
 
   useEffect(() => {
     fetchMovies();
@@ -22,26 +25,17 @@ const MovieList = ({ query, filter }) => {
     if (query){
       url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
     }
-    //if(filter && !query){
-    //
-    //}
-
-    console.log(url)
+    if(filter){
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${filter} `;
+    }
+    if (filter && query){
+      // Fix url
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${filter}&query=${query} `;
+    }
 
     try {
       const response = await fetch(url)
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`)
-      }
-
       const data = await response.json()
-
-      // if (query != ""){
-      //   setMovies({})
-      //   setMovies(data.results)
-
-      // }
 
       if (page > 1) {
         setMovies(prev => [
@@ -61,6 +55,26 @@ const MovieList = ({ query, filter }) => {
     pageNumber(prevPage => prevPage + 1)
   }
 
+
+  /* fetchDetails fetches the movies Details  */
+  const fetchDetails= async (movieId) => {
+    const apiKey = `976734b57cc39b8db299af9db027f266`
+    const detailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
+  
+
+    try {
+      const detailsR = await fetch(detailsUrl)
+      const details = await detailsR.json()
+
+      console.log(details)
+
+      setSelectedMovie({...details})
+      setModalActive(true)
+    } catch (error) {
+      console.error("Error in details:", error)
+    }
+  }
+
   /* End Fetching  -------------------------------------------------------------- */
 
 
@@ -69,7 +83,8 @@ const MovieList = ({ query, filter }) => {
     <div>
       <div className="MovieList">
         {movies.map(movie => (
-          <div key={movie.id}>
+          <div key={movie.id} onClick={() => fetchDetails(movie.id)}>
+            
             <MovieCard
               title={movie.title}
               image={movie.poster_path}
@@ -80,6 +95,9 @@ const MovieList = ({ query, filter }) => {
       </div>
 
       <button onClick={nextPage}>See More</button>
+
+
+      <Modal isOpen={modalActive} onClose={() => setModalActive(false)} movie={selectedMovie} />
 
     </div>
   )
