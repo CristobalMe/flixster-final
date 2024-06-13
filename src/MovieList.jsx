@@ -20,7 +20,7 @@ const MovieList = ({ query, filter, filterOrder }) => {
   it also handles new requests for when users need more movies displayed  */
 
   const fetchMovies = async () => {
-    const apiKey = `976734b57cc39b8db299af9db027f266`
+    const apiKey = import.meta.env.VITE_API_KEY
     let url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&page=${page}`
     if (query){
 
@@ -65,7 +65,7 @@ const MovieList = ({ query, filter, filterOrder }) => {
 
   /* fetchDetails fetches the movies Details  */
   const fetchDetails= async (movieId) => {
-    const apiKey = `976734b57cc39b8db299af9db027f266`
+    const apiKey = import.meta.env.VITE_API_KEY
     const detailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
 
     const videosUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`
