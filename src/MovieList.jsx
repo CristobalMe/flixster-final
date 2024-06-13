@@ -23,6 +23,7 @@ const MovieList = ({ query, filter, filterOrder }) => {
     const apiKey = `976734b57cc39b8db299af9db027f266`
     let url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&page=${page}`
     if (query){
+
       url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
     }
     if(filter){
@@ -54,6 +55,8 @@ const MovieList = ({ query, filter, filterOrder }) => {
     }
   }
 
+  
+
   /* nextPage changes the page from we're fetching the data */
   const nextPage = () => {
     pageNumber(prevPage => prevPage + 1)
@@ -64,15 +67,21 @@ const MovieList = ({ query, filter, filterOrder }) => {
   const fetchDetails= async (movieId) => {
     const apiKey = `976734b57cc39b8db299af9db027f266`
     const detailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
+
+    const videosUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`
   
 
     try {
       const detailsR = await fetch(detailsUrl)
       const details = await detailsR.json()
 
-      console.log(details)
+      const videosResponse = await fetch(videosUrl)
+      const videos = await videosResponse.json()
 
-      setSelectedMovie({...details})
+      const trailer = videos.results.find(video => video.site === "YouTube" && video.type === "Trailer")
+      const trailerUrl = trailer ? `https://www.youtube.com/embed/${trailer.key}` : null
+
+      setSelectedMovie({...details, trailerUrl})
       setModalActive(true)
     } catch (error) {
       console.error("Error in details:", error)
@@ -88,12 +97,7 @@ const MovieList = ({ query, filter, filterOrder }) => {
       <div className="MovieList">
         {movies.map(movie => (
           <div key={movie.id} onClick={() => fetchDetails(movie.id)}>
-            
-            <MovieCard
-              title={movie.title}
-              image={movie.poster_path}
-              rating={movie.vote_average}
-            />
+            <MovieCard title={movie.title} image={movie.poster_path} rating={movie.vote_average}/>
           </div>
         ))}
       </div>

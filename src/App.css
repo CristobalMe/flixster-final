@@ -6,14 +6,20 @@
   
 }
 
+.Title{
+  font-size: 300%;
+}
+
+
+
 .App-header {
-  background-color: #3E4142;
+  background-color: #0367A6;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
   margin-bottom: 1px black;
-  color: #604085;
+  color: #ffffff;
   padding: 20px;
 }
 
@@ -97,17 +103,13 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-.toggleSearch{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
-  grid-gap: 0.01rem;
-}
+
 
 
 
 /* Dropdown Button */
 .dropbtn {
-  background-color: #04AA6D;
+  background-color: #2196F3;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -145,7 +147,7 @@ input:checked + .slider:before {
 .dropdown:hover .dropdown-content {display: block;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {background-color: #1873be;}
 
 
 
@@ -155,6 +157,32 @@ input:checked + .slider:before {
 footer {
   text-align: center;
   padding: 3px;
-  background-color: DarkSalmon;
+  background-color: #033E8C;
   color: white;
+}
+
+
+
+.toggleSearch{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  color: #ffffff;
+}
+
+
+.bar{
+  color: #ffffff;
+}
+
+.Genre {
+  background-color: #033E8C;
+  width: 100%;
+}
+
+.Desending {
+  background-color: #033E8C;
+  width: 100%;
 }

@@ -17,6 +17,9 @@ const Modal = ({ isOpen, onClose, movie }) => {
                 <p><strong>Release Date:</strong> {movie?.release_date}</p>
                 <p><strong>Genres:</strong> {movie?.genres.map(genre => genre.name).join(', ')}</p>
                 <p><strong>Overview:</strong> {movie?.overview}</p>
+                {movie?.trailerUrl && (
+                <iframe src={movie.trailerUrl} width="500" height="300" />
+                )}
                 
             </div>
       </div>

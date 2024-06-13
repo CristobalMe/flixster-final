@@ -1,20 +1,32 @@
 .card{
     background-color: #033E8C;
     border-radius: 8px;
-    min-width: 200px;
-    min-height: 300px;
+    max-width: 350px;
     box-shadow: 0 14px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     margin: auto;
 }
 
 .img{
-    size: 60px;
+    width: 100%;
+    height: auto;
 }
 
 .card:hover{
     background-color: #0367A6;
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
+
+
+.watchedLiked{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+    grid-gap: 0rem;
+}
+
+.card p{
+    color: white;
+}
+
 
 

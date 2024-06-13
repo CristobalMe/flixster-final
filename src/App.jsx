@@ -9,6 +9,13 @@ const App = () => {
   const [isSearchOn, setSearchOn] = useState(false)
   const [filterOrder, setFilterOrder] = useState('')
 
+  const [listLikedMovies, setLikedMovies] = useState([])
+
+  //setMovies(prev => [
+  //  ...prev,
+  //  ...data.results
+  //])
+
 
   /* Searching --------------------------------------------------------------- */
 
@@ -43,10 +50,9 @@ const App = () => {
   return (
     <div className="App">
       <header className='App-header'>
-        <h2>Flixster</h2>
-      </header>
+        <h2 className='Title'>Flixster 🎬</h2>
 
-      <div class="dropdown">
+        <div class="dropdown">
         <button class="dropbtn">Filter</button>
         <div class="dropdown-content">
             <button class="Genre" onClick={() => handleFilterChange("")}>None</button>
@@ -60,6 +66,10 @@ const App = () => {
             <button class="Desending" onClick={() => handleFilterChangeOrder("vote_average.asc")}>Votes ascending</button>
         </div>
       </div>
+
+      </header>
+
+      
 
 
 
@@ -87,6 +97,7 @@ const App = () => {
           variant="outlined"
           fullWidth
           label="Search"
+          color='secondary'
         />}
 
 

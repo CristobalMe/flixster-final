@@ -13,4 +13,10 @@
   
 .modal-content {
     background-color: #fff;
+    overflow: auto;
+    max-width: 50rem;
+    max-height: 50rem;
 }
+
+
+  
