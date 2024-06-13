@@ -1,7 +1,12 @@
+import {useRef} from 'react';
 import './MovieCard.css'
 
 function MovieCard(props) {
   const image = `https://image.tmdb.org/t/p/w500${props.image}`
+
+  const handleToggleCheckBox = (event) =>{
+    event.stopPropagation();
+  }
 
   return (
     <div className="card">
@@ -12,15 +17,15 @@ function MovieCard(props) {
 
       <div className="watchedLiked">
         <p>👁️</p>
-        <label className="switch">
-          <input type="checkbox" onChange={() => {}} id='watchedOn' />
+        <label onClickCapture={(event) => {(handleToggleCheckBox(event))}} className="switch">
+          <input type="checkbox" id='watchedOn' />
           <span className="slider round"></span>
         </label>
 
 
         <p>❤️</p>
-        <label className="switch">
-          <input type="checkbox" onChange={() => {}} id='likedOn' />
+        <label onClickCapture={(event) => {handleToggleCheckBox(event)}} className="switch">
+          <input  type="checkbox" id='likedOn' />
           <span className="slider round"></span>
         </label>
       </div>
