@@ -9,13 +9,8 @@ const App = () => {
   const [isSearchOn, setSearchOn] = useState(false)
   const [filterOrder, setFilterOrder] = useState('')
 
-  const [listLikedMovies, setLikedMovies] = useState([])
-
-  //setMovies(prev => [
-  //  ...prev,
-  //  ...data.results
-  //])
-
+  // Still pending
+  //const [listLikedMovies, setLikedMovies] = useState([])
 
   /* Searching --------------------------------------------------------------- */
 
