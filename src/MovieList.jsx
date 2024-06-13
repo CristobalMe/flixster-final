@@ -24,22 +24,21 @@ const MovieList = ({ query, filter, filterOrder }) => {
     
     let url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&page=${page}`
     if (query){
-
       url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
     }
-    if(filter){
-      url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${filter} `;
+    if(filter || filterOrder){
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=${filterOrder}&with_genres=${filter} `;
     }
     if (filter && query){
       // Fix url
-      url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${filter}&query=${query} `;
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=${filterOrder}&with_genres=${filter}&query=${query} `;
     }
 
 
     try {
       const response = await fetch(url)
       const data = await response.json()
-      let x = data.results;
+      
       
 
       if (page > 1) {
@@ -47,152 +46,12 @@ const MovieList = ({ query, filter, filterOrder }) => {
           ...prev,
           ...data.results
         ])
-
-        // Sorting ------------------------------------
-
-        if (filterOrder == "des2"){
-          x = movies;
-          x.sort(function (a, b) {
-            if (a.vote_average < b.vote_average) {
-              return -1;
-            }
-            if (a.vote_average > b.vote_average) {
-              return 1;
-            }
-            return 0;
-          });
-        
-
-          setMovies(x)
-        }
-
-        if (filterOrder == "asV"){
-          x = movies;
-          x.sort(function (a, b) {
-            if (a.vote_average < b.vote_average) {
-              return 1;
-            }
-            if (a.vote_average > b.vote_average) {
-              return -1;
-            }
-            return 0;
-          });
-        
-
-          setMovies(x)
-        }
-
-
-        
-        if (filterOrder == "des"){
-          x = movies;
-          x.sort(function (a, b) {
-            if (a.title < b.title) {
-              return -1;
-            }
-            if (a.title > b.title) {
-              return 1;
-            }
-            return 0;
-          });
-        
-
-          setMovies(x)
-        }
-
-        if (filterOrder == "as"){
-          x = movies;
-          x.sort(function (a, b) {
-            if (a.title < b.title) {
-              return 1;
-            }
-            if (a.title > b.title) {
-              return -1;
-            }
-            return 0;
-          });
-        
-
-          setMovies(x)
-        }
-
-        // End Sorting ------------------------------------
-
-
       } else {
-
-        // Sorting ------------------------------------
-
-        if (filterOrder == "des2"){
-          x = movies;
-          x.sort(function (a, b) {
-            if (a.vote_average < b.vote_average) {
-              return -1;
-            }
-            if (a.vote_average > b.vote_average) {
-              return 1;
-            }
-            return 0;
-          });
-        
-
-          setMovies(x)
-        }
-
-        if (filterOrder == "asV"){
-          x = movies;
-          x.sort(function (a, b) {
-            if (a.vote_average < b.vote_average) {
-              return 1;
-            }
-            if (a.vote_average > b.vote_average) {
-              return -1;
-            }
-            return 0;
-          });
-        
-
-          setMovies(x)
-        }
-        
-
-        if (filterOrder == "des"){
-    
-          x.sort(function (a, b) {
-            if (a.title < b.title) {
-              return -1;
-            }
-            if (a.title > b.title) {
-              return 1;
-            }
-            return 0;
-          });
-        }
-
-        if (filterOrder == "as"){
-    
-          x.sort(function (a, b) {
-            if (a.title < b.title) {
-              return 1;
-            }
-            if (a.title > b.title) {
-              return -1;
-            }
-            return 0;
-          });
-        }
-
-        setMovies(x)
-
+        setMovies(data.results)
       }
-
-      // End Sorting ------------------------------------
     } catch (error) {
       console.error("Error:", error)
     }
-
-
-    
   }
 
   

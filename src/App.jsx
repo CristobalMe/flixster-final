@@ -65,10 +65,11 @@ const App = () => {
       <div className="dropdown">
       <button className="dropbtn">Sort</button>
       <div className="dropdown-content">
-          <button className="Desending" onClick={() => handleFilterChangeOrder("des")}>Title descending</button>
-          <button className="Desending" onClick={() => handleFilterChangeOrder("as")}>Title ascending</button>
-          <button className="Desending" onClick={() => handleFilterChangeOrder("des2")}>Votes descending</button>
-          <button className="Desending" onClick={() => handleFilterChangeOrder("asV")}>Votes ascending</button>
+          <button className="Desending" onClick={() => handleFilterChangeOrder("")}>None</button>
+          <button className="Desending" onClick={() => handleFilterChangeOrder("title.desc")}>Title descending</button>
+          <button className="Desending" onClick={() => handleFilterChangeOrder("title.asc")}>Title ascending</button>
+          <button className="Desending" onClick={() => handleFilterChangeOrder("vote_average.asc")}>Votes descending</button>
+          <button className="Desending" onClick={() => handleFilterChangeOrder("vote_average.desc")}>Votes ascending</button>
       </div>
       </div>
 
