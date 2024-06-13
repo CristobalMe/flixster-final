@@ -42,6 +42,8 @@ const App = () => {
   const handleFilterChangeOrder = (newfilterOrder) => {
     setFilterOrder(newfilterOrder)
   }
+
+ 
     
 
 
@@ -52,24 +54,22 @@ const App = () => {
       <header className='App-header'>
         <h2 className='Title'>Flixster 🎬</h2>
 
-        <div class="dropdown">
-        <button class="dropbtn">Filter</button>
-        <div class="dropdown-content">
-            <button class="Genre" onClick={() => handleFilterChange("")}>None</button>
-            <button class="Genre" onClick={() => handleFilterChange("28")}>Action</button>
-            <button class="Genre" onClick={() => handleFilterChange("16")}>Animation</button>
-            <button class="Genre" onClick={() => handleFilterChange("35")}>Comedy</button>
-            <button class="Genre" onClick={() => handleFilterChange("14")}>Fantasy</button>
-            <button class="Desending" onClick={() => handleFilterChangeOrder("title.desc")}>Title descending</button>
-            <button class="Desending" onClick={() => handleFilterChangeOrder("title.asc")}>Title ascending</button>
-            <button class="Desending" onClick={() => handleFilterChangeOrder("vote_average.des")}>Votes descending</button>
-            <button class="Desending" onClick={() => handleFilterChangeOrder("vote_average.asc")}>Votes ascending</button>
+        <div className="dropdown">
+        <button className="dropbtn">Filter</button>
+        <div className="dropdown-content">
+            <button className="Genre" onClick={() => handleFilterChange("")}>None</button>
+            <button className="Genre" onClick={() => handleFilterChange("28")}>Action</button>
+            <button className="Genre" onClick={() => handleFilterChange("16")}>Animation</button>
+            <button className="Genre" onClick={() => handleFilterChange("35")}>Comedy</button>
+            <button className="Genre" onClick={() => handleFilterChange("14")}>Fantasy</button>
+            <button className="Desending" onClick={() => handleFilterChangeOrder("title.desc")}>Title descending</button>
+            <button className="Desending" onClick={() => handleFilterChangeOrder("title.asc")}>Title ascending</button>
+            <button className="Desending" onClick={() => handleFilterChangeOrder("vote_average.des")}>Votes descending</button>
+            <button className="Desending" onClick={() => handleFilterChangeOrder("vote_average.asc")}>Votes ascending</button>
         </div>
       </div>
 
       </header>
-
-      
 
 
 
@@ -77,7 +77,7 @@ const App = () => {
         
         <p>Now Playing</p>
 
-        <label class="switch">
+        <label className="switch">
           <input type="checkbox" onChange={() => {
             if (isSearchOn){
               setSearchOn(false)
@@ -85,7 +85,7 @@ const App = () => {
               setSearchOn(true)
             }
           }} id='searchBarOn' />
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
 
         <p>Search</p>

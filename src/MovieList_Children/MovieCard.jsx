@@ -12,16 +12,16 @@ function MovieCard(props) {
 
       <div className="watchedLiked">
         <p>👁️</p>
-        <label class="switch">
+        <label className="switch">
           <input type="checkbox" onChange={() => {}} id='watchedOn' />
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
 
 
         <p>❤️</p>
         <label className="switch">
           <input type="checkbox" onChange={() => {}} id='likedOn' />
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
       </div>
 
