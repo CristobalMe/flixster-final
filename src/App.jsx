@@ -57,10 +57,10 @@ const App = () => {
             <button className="Genre" onClick={() => handleFilterChange("16")}>Animation</button>
             <button className="Genre" onClick={() => handleFilterChange("35")}>Comedy</button>
             <button className="Genre" onClick={() => handleFilterChange("14")}>Fantasy</button>
-            <button className="Desending" onClick={() => handleFilterChangeOrder("title.desc")}>Title descending</button>
-            <button className="Desending" onClick={() => handleFilterChangeOrder("title.asc")}>Title ascending</button>
-            <button className="Desending" onClick={() => handleFilterChangeOrder("vote_average.des")}>Votes descending</button>
-            <button className="Desending" onClick={() => handleFilterChangeOrder("vote_average.asc")}>Votes ascending</button>
+            <button className="Desending" onClick={() => handleFilterChangeOrder("des")}>Title descending</button>
+            <button className="Desending" onClick={() => handleFilterChangeOrder("as")}>Title ascending</button>
+            <button className="Desending" onClick={() => handleFilterChangeOrder("des2")}>Votes descending</button>
+            <button className="Desending" onClick={() => handleFilterChangeOrder("asV")}>Votes ascending</button>
         </div>
       </div>
 

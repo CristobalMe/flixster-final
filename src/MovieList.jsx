@@ -21,6 +21,7 @@ const MovieList = ({ query, filter, filterOrder }) => {
 
   const fetchMovies = async () => {
     const apiKey = import.meta.env.VITE_API_KEY
+    
     let url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&page=${page}`
     if (query){
 
@@ -34,25 +35,164 @@ const MovieList = ({ query, filter, filterOrder }) => {
       url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${filter}&query=${query} `;
     }
 
-    if (filterOrder){
-      url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=1&sort_by=${filterOrder}`
-    }
 
     try {
       const response = await fetch(url)
       const data = await response.json()
+      let x = data.results;
+      
 
       if (page > 1) {
         setMovies(prev => [
           ...prev,
           ...data.results
         ])
+
+        // Sorting ------------------------------------
+
+        if (filterOrder == "des2"){
+          x = movies;
+          x.sort(function (a, b) {
+            if (a.vote_average < b.vote_average) {
+              return -1;
+            }
+            if (a.vote_average > b.vote_average) {
+              return 1;
+            }
+            return 0;
+          });
+        
+
+          setMovies(x)
+        }
+
+        if (filterOrder == "asV"){
+          x = movies;
+          x.sort(function (a, b) {
+            if (a.vote_average < b.vote_average) {
+              return 1;
+            }
+            if (a.vote_average > b.vote_average) {
+              return -1;
+            }
+            return 0;
+          });
+        
+
+          setMovies(x)
+        }
+
+
+        
+        if (filterOrder == "des"){
+          x = movies;
+          x.sort(function (a, b) {
+            if (a.title < b.title) {
+              return -1;
+            }
+            if (a.title > b.title) {
+              return 1;
+            }
+            return 0;
+          });
+        
+
+          setMovies(x)
+        }
+
+        if (filterOrder == "as"){
+          x = movies;
+          x.sort(function (a, b) {
+            if (a.title < b.title) {
+              return 1;
+            }
+            if (a.title > b.title) {
+              return -1;
+            }
+            return 0;
+          });
+        
+
+          setMovies(x)
+        }
+
+        // End Sorting ------------------------------------
+
+
       } else {
-        setMovies(data.results)
+
+        // Sorting ------------------------------------
+
+        if (filterOrder == "des2"){
+          x = movies;
+          x.sort(function (a, b) {
+            if (a.vote_average < b.vote_average) {
+              return 1;
+            }
+            if (a.vote_average > b.vote_average) {
+              return -1;
+            }
+            return 0;
+          });
+        
+
+          setMovies(x)
+        }
+
+        if (filterOrder == "asV"){
+          x = movies;
+          x.sort(function (a, b) {
+            if (a.vote_average < b.vote_average) {
+              return -1;
+            }
+            if (a.vote_average > b.vote_average) {
+              return 1;
+            }
+            return 0;
+          });
+        
+
+          setMovies(x)
+        }
+        
+
+        if (filterOrder == "des"){
+    
+          x.sort(function (a, b) {
+            if (a.title < b.title) {
+              return -1;
+            }
+            if (a.title > b.title) {
+              return 1;
+            }
+            return 0;
+          });
+        }
+
+        if (filterOrder == "as"){
+    
+          x.sort(function (a, b) {
+            if (a.title < b.title) {
+              return 1;
+            }
+            if (a.title > b.title) {
+              return -1;
+            }
+            return 0;
+          });
+        }
+
+        setMovies(x)
+
       }
+
+      // End Sorting ------------------------------------
     } catch (error) {
       console.error("Error:", error)
     }
+
+
+    
   }
 
   
@@ -67,7 +207,6 @@ const MovieList = ({ query, filter, filterOrder }) => {
   const fetchDetails= async (movieId) => {
     const apiKey = import.meta.env.VITE_API_KEY
     const detailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
-
     const videosUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`
   
 
