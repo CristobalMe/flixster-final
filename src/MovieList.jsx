@@ -241,7 +241,7 @@ const MovieList = ({ query, filter, filterOrder }) => {
         ))}
       </div>
 
-      <button class="more" onClick={nextPage}>See More</button>
+      <button className="more" onClick={nextPage}>See More</button>
 
 
       <Modal isOpen={modalActive} onClose={() => setModalActive(false)} movie={selectedMovie} />
