@@ -68,8 +68,8 @@ const App = () => {
           <button className="Desending" onClick={() => handleFilterChangeOrder("")}>None</button>
           <button className="Desending" onClick={() => handleFilterChangeOrder("title.desc")}>Title descending</button>
           <button className="Desending" onClick={() => handleFilterChangeOrder("title.asc")}>Title ascending</button>
-          <button className="Desending" onClick={() => handleFilterChangeOrder("vote_average.asc")}>Votes descending</button>
-          <button className="Desending" onClick={() => handleFilterChangeOrder("vote_average.desc")}>Votes ascending</button>
+          <button className="Desending" onClick={() => handleFilterChangeOrder("vote_average.desc")}>Votes descending</button>
+          <button className="Desending" onClick={() => handleFilterChangeOrder("vote_average.asc")}>Votes ascending</button>
       </div>
       </div>
 
