@@ -23,16 +23,15 @@ const MovieList = ({ query, filter, filterOrder }) => {
     const apiKey = import.meta.env.VITE_API_KEY
     
     let url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&page=${page}`
-    if (query){
-      url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
-    }
+    
     if(filter || filterOrder){
       url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=${filterOrder}&with_genres=${filter} `;
     }
-    if (filter && query){
-      // Fix url
-      url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=${filterOrder}&with_genres=${filter}&query=${query} `;
+
+    if (query){
+      url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
     }
+    
 
 
     try {
