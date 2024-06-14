@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 import Modal from './Modal'
 
 
-const MovieList = ({ query, filter, filterOrder }) => {
+const MovieList = ({ query, filter, filterOrder, listLikedMovies, setLikedMovies, listWhatchedMovies, setWhatchedMovies }) => {
+  
   const [movies, setMovies] = useState([])
   const [page, pageNumber] = useState(1)
   const [modalActive, setModalActive] = useState(false)
@@ -94,7 +95,9 @@ const MovieList = ({ query, filter, filterOrder }) => {
       <div className="MovieList">
         {movies.map(movie => (
           <div key={movie.id} onClick={() => fetchDetails(movie.id)}>
-            <MovieCard title={movie.title} image={movie.poster_path} rating={movie.vote_average}/>
+            <MovieCard title={movie.title} image={movie.poster_path} rating={movie.vote_average} 
+            listLikedMovies={listLikedMovies} setLikedMovies={setLikedMovies}
+            listWhatchedMovies= {listWhatchedMovies} setWhatchedMovies={setWhatchedMovies} />
           </div>
         ))}
       </div>

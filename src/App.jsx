@@ -9,11 +9,9 @@ import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+
 
 
 const App = () => {
@@ -22,8 +20,8 @@ const App = () => {
   const [isSearchOn, setSearchOn] = useState(false)
   const [filterOrder, setFilterOrder] = useState('')
 
-  const [listLikedMovies, setLikedMovies] = useState(['test'])
-  const [listWhatchedMovies, setWhatchedMovies] = useState(['test'])
+  const [listLikedMovies, setLikedMovies] = useState([])
+  const [listWhatchedMovies, setWhatchedMovies] = useState([])
 
   /* Sidebar ------------------------------------------------------------------ */
 
@@ -158,7 +156,9 @@ const App = () => {
         />}
 
 
-      <MovieList query={query} filter={filter} filterOrder={filterOrder} />
+      <MovieList query={query} filter={filter} filterOrder={filterOrder} 
+      listLikedMovies={listLikedMovies} setLikedMovies={setLikedMovies} 
+      listWhatchedMovies={listWhatchedMovies} setWhatchedMovies={setWhatchedMovies} />
 
 
       <footer>

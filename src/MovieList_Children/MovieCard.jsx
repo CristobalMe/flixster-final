@@ -1,11 +1,48 @@
-import {useRef} from 'react';
 import './MovieCard.css'
 
 function MovieCard(props) {
   const image = `https://image.tmdb.org/t/p/w500${props.image}`
+  let count = 1;
 
   const handleToggleCheckBox = (event) =>{
     event.stopPropagation();
+  }
+
+  const checkLiked = (title) =>{
+    if (props.listLikedMovies.includes(title)){
+      
+      console.log('aaaaaa')
+    } else{
+      props.setLikedMovies(prev => [
+        ...prev,
+        title
+      ])
+    }
+  }
+
+  const checkWatched = (title) =>{
+    // console.log("ran checkwatched")
+
+    let newMovies = [];
+    
+    if (props.listWhatchedMovies.includes(title)){
+      for (let i=0; i < props.listWhatchedMovies.length; i++){
+        console.log(props.listWhatchedMovies[i]);
+        if (props.listWhatchedMovies[i] != (title)){
+          newMovies.push(title);
+        }
+      }
+      
+      props.setWhatchedMovies(newMovies);
+      console.log(props.listWhatchedMovies);
+    } else{
+
+      props.setWhatchedMovies(prev => [
+        ...prev,
+        title
+      ])
+      
+    }
   }
 
   return (
@@ -17,14 +54,22 @@ function MovieCard(props) {
 
       <div className="watchedLiked">
         <p>👁️</p>
-        <label onClickCapture={(event) => {(handleToggleCheckBox(event))}} className="switch">
-          <input type="checkbox" id='watchedOn' />
+        <label onClickCapture={(event) => {
+          handleToggleCheckBox(event)
+          if(count % 2 == 0){checkWatched(props.title)}
+          count =count+1;
+          }} className="switch">
+          <input type="checkbox" id='watchedOn'  />
           <span className="slider round"></span>
         </label>
 
 
         <p>❤️</p>
-        <label onClickCapture={(event) => {handleToggleCheckBox(event)}} className="switch">
+        <label onClickCapture={(event) => {
+          handleToggleCheckBox(event)
+          if(count % 2 == 0){checkLiked(props.title)}
+          count++
+          }} className="switch">
           <input  type="checkbox" id='likedOn' />
           <span className="slider round"></span>
         </label>
