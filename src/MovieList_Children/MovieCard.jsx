@@ -9,9 +9,17 @@ function MovieCard(props) {
   }
 
   const checkLiked = (title) =>{
+    let newLikes = [];
     if (props.listLikedMovies.includes(title)){
+      for (let i=0; i < props.listLikedMovies.length; i++){
+        console.log(props.listLikedMovies[i]);
+        if (props.listLikedMovies[i] != (title)){
+          newLikes.push(props.listLikedMovies[i]);
+        }
+      }
       
-      console.log('aaaaaa')
+      props.setLikedMovies(newLikes);
+      console.log(props.listLikedMovies);
     } else{
       props.setLikedMovies(prev => [
         ...prev,
@@ -28,8 +36,8 @@ function MovieCard(props) {
     if (props.listWhatchedMovies.includes(title)){
       for (let i=0; i < props.listWhatchedMovies.length; i++){
         console.log(props.listWhatchedMovies[i]);
-        if (props.listWhatchedMovies[i] != (title)){
-          newMovies.push(title);
+        if (props.listWhatchedMovies[i] !== (title)){
+          newMovies.push(props.listWhatchedMovies[i]);
         }
       }
       
