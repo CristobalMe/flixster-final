@@ -29,8 +29,6 @@ function MovieCard(props) {
   }
 
   const checkWatched = (title) =>{
-    // console.log("ran checkwatched")
-
     let newMovies = [];
     
     if (props.listWhatchedMovies.includes(title)){
